@@ -1,0 +1,33 @@
+int ledR = 6;
+int ledG = 5;
+int ledB = 3;
+int brightness = 0;
+int fadeAmount = 5;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(ledR, OUTPUT);
+  pinMode(ledG, OUTPUT);
+  pinMode(ledB, OUTPUT);
+}
+
+void fade(int type) {
+  // brightens and fades an LED
+  analogWrite(type, brightness);
+  while(brightness < 255) {
+    brightness = brightness + fadeAmount;
+    analogWrite(type, brightness);
+    delay(25);
+  }
+  while(brightness > 0) {
+    brightness = brightness - fadeAmount;
+    analogWrite(type, brightness);
+    delay(25);
+  } 
+}
+
+void loop() {
+  fade(ledB);
+  fade(ledG);
+  fade(ledR);
+}
