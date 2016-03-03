@@ -1,0 +1,33 @@
+#include <IRremote.h>
+
+int IRpin = 10;
+IRrecv irrecv(IRpin);
+decode_results results;
+
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn(); // Start the receiver
+}
+
+void loop() 
+{
+  if (irrecv.decode(&results)) 
+    {
+      Serial.println(results.value, DEC); // Print the Serial 'results.value'
+      irrecv.resume();   // Receive the next value
+    }
+  
+  
+}
+
+//POWR=16753245 MODE=16736925 MUTE=16769565
+//PLAY=16720605 BACK=16712445 FWRD=16761405
+//EQZR=16769055 MNUS=16754775 PLUS=16748655
+//ZERO=16738455 SWCH=16750695 U/SD=16756815
+//OONE=16724175 TTWO=16718055 THRE=16743045
+//FOUR=16716015 FIVE=16726215 SSIX=16734885
+//SEVN=16728765 EIGH=16730805 NINE=16732845
+
+//BEFORE= 4294967295
+
